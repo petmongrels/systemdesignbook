@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="bootstrap" default="compile">
+    <include file="shared-build.xml"/>
+
+    <target name="compile">
+        <compile-module-source module="build"/>
+    </target>
+</project>

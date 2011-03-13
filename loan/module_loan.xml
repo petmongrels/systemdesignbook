@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_loan" default="compile.module.loan">
+  <dirname property="module.loan.basedir" file="${ant.file.module_loan}"/>
+  
+  <property name="module.jdk.home.loan" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.loan" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.loan" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.loan" value="${compiler.args}"/>
+  
+  <property name="loan.output.dir" value="${module.loan.basedir}/../out/production/loan"/>
+  <property name="loan.testoutput.dir" value="${module.loan.basedir}/../out/test/loan"/>
+  
+  <path id="loan.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="loan.module.production.classpath">
+    <path refid="${module.jdk.classpath.loan}"/>
+  </path>
+  
+  <path id="loan.runtime.production.module.classpath">
+    <pathelement location="${loan.output.dir}"/>
+  </path>
+  
+  <path id="loan.module.classpath">
+    <path refid="${module.jdk.classpath.loan}"/>
+    <pathelement location="${loan.output.dir}"/>
+  </path>
+  
+  <path id="loan.runtime.module.classpath">
+    <pathelement location="${loan.testoutput.dir}"/>
+    <pathelement location="${loan.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.loan">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.loan">
+    <patternset refid="excluded.from.module.loan"/>
+  </patternset>
+  
+  <path id="loan.module.sourcepath">
+    <dirset dir="${module.loan.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.loan" depends="compile.module.loan.production,compile.module.loan.tests" description="Compile module loan"/>
+  
+  <target name="compile.module.loan.production" depends="register.custom.compilers" description="Compile module loan; production classes">
+    <mkdir dir="${loan.output.dir}"/>
+    <javac2 destdir="${loan.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.loan}/javac">
+      <compilerarg line="${compiler.args.loan}"/>
+      <bootclasspath refid="loan.module.bootclasspath"/>
+      <classpath refid="loan.module.production.classpath"/>
+      <src refid="loan.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.loan"/>
+    </javac2>
+    
+    <copy todir="${loan.output.dir}">
+      <fileset dir="${module.loan.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.loan.tests" depends="register.custom.compilers,compile.module.loan.production" description="compile module loan; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.loan" description="cleanup module">
+    <delete dir="${loan.output.dir}"/>
+    <delete dir="${loan.testoutput.dir}"/>
+  </target>
+</project>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="system_design_book" default="all">
+    <include file="internal_build.xml"/>
+
+    <target name="module.dependencies">
+        <module-dependency module="customer"/>
+        <module-dependency module="loan" on="customer"/>
+        <module-dependency module="presentation" on="application"/>
+        <module-dependency module="application" on="customer, loan"/>
+    </target>
+
+    <target name="all" depends="module.dependencies"/>
+</project>

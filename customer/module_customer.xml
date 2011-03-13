@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_customer" default="compile.customer.test">
+    <include file="../build/shared-build.xml"/>
+    <target name="compile.customer" depends="clean.customer">
+        <compile-module-source module="customer"/>
+    </target>
+
+    <target name="compile.customer.test" depends="compile.customer">
+        <compile-module-test module="customer"/>
+    </target>
+
+    <target name="clean.customer">
+        <clean-module module="customer"/>
+    </target>
+</project>
