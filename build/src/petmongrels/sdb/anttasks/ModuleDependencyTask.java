@@ -23,7 +23,7 @@ public class ModuleDependencyTask extends Task {
         super.execute();
         String[] dependeeModules = commaSeparatedList.split(",");
         List<String> dependeeModuleList = Arrays.asList(dependeeModules);
-        ModuleDependencyMap.Instance.add(module, dependeeModuleList);
+        ObjectFactory.ModuleDependencyMap.add(module, dependeeModuleList);
         //resolve cyclic dependencies
     }
 }
