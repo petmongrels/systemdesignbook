@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="internal" xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="internal">
     <taskdef name="call-for-module" classname="petmongrels.sdb.anttasks.CallForModuleTask"/>
-    <ivy:retrieve log="quiet" sync="true" pattern="../lib/[artifact]-[revision](-[classifier]).[ext]"/>
 </project>

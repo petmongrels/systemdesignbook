@@ -1,7 +1,7 @@
 package petmongrels.sdb.application.loan;
 
 public class LoanService {
-    public void create() {
+    public void create(CreateLoanRequest request) {
         
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="system_design_book" default="build">
+    <include file="ivy_bootstrap.xml" as="ivy"/>
     <include file="internal_build.xml"/>
     <include file="../application/application_build.xml" as="application"/>
     <include file="../customer/customer_build.xml" as="customer"/>
@@ -12,15 +13,15 @@
     <target name="application" depends="customer, loan"/>
     <target name="all" depends="customer, loan, application, presentation"/>
 
-    <target name="clean">
+    <target name="clean" depends="ivy.init">
         <call-for-module name="all"/>
     </target>
 
-    <target name="compile">
+    <target name="compile" depends="ivy.init">
         <call-for-module name="all"/>
     </target>
 
-    <target name="test">
+    <target name="test" depends="ivy.init">
         <call-for-module name="all"/>
     </target>
 

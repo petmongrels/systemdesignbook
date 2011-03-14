@@ -5,5 +5,21 @@
         <dependency org="org.testng" name="testng" rev="5.14.6"/>
         <dependency org="org.apache.ant" name="ant" rev="1.8.2"/>
         <dependency org="ant-contrib" name="ant-contrib" rev="1.0b3"/>
+        <dependency org="org.springframework" name="spring" rev="2.5.6">
+            <exclude module="jxl"/>
+            <exclude module="oc4j"/>
+            <exclude module="jsf-api"/>
+            <exclude module="jms"/>
+            <exclude module="connector-api"/>
+            <exclude module="commonj-twm"/>
+            <exclude module="toplink"/>
+            <exclude module="jmxtools"/>
+            <exclude module="toplink-essentials"/>
+            <exclude module="connector"/>
+            <exclude module="ejb"/>
+            <exclude module="jmxri"/>
+            <exclude module="commons-attributes-compiler"/>
+            <exclude module="velocity"/>
+        </dependency>
     </dependencies>
 </ivy-module>
