@@ -8,8 +8,9 @@
 
     <path id="production.classpath">
         <path path="${jdk.classpath}"/>
-        <path path="lib/ant-contrib-1.0b3.jar"/>
-        <path path="lib/ant.jar"/>
+        <fileset dir="../lib">
+            <include name="*.jar"/>
+        </fileset>
     </path>
 
     <macrodef name="init-module">

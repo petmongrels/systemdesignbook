@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="bootstrap" default="compile">
+<project name="bootstrap" default="test" xmlns:ivy="antlib:org.apache.ivy.ant">
     <include file="shared-build.xml"/>
+    <ivy:retrieve log="quiet" sync="true" pattern="../lib/[artifact]-[revision](-[classifier]).[ext]"/>
 
     <target name="compile">
         <compile-module-source module="build"/>
+    </target>
+
+    <target name="test" depends="compile">
+        <compile-module-test module="build"/>
+    </target>
+
+    <target name="clean">
+        <clean-module module="build"/>
     </target>
 </project>

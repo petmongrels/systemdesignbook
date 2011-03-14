@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="system_design_book" default="build">
+<project name="system_design_book" default="build" xmlns:ivy="antlib:org.apache.ivy.ant">
     <include file="internal_build.xml"/>
+    <ivy:retrieve log="quiet" sync="true" pattern="../lib/[artifact]-[revision](-[classifier]).[ext]"/>
 
     <target name="module.dependencies">
         <module-dependency module="customer"/>

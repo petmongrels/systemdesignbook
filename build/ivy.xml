@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ivy-module version="2.0">
     <info organisation="petmongrels" module="system_design_book"/>
-    <configurations>
-        <conf name="application" extends="customer"/>
-        <conf name="application-test" extends="application" visibility="private"/>
-        <conf name="customer"/>
-        <conf name="customer-test" extends="customer" visibility="private"/>
-        <conf name="loan"/>
-        <conf name="loan-test" extends="loan" visibility="private"/>
-        <conf name="presentation" extends="application"/>
-        <conf name="presentation-test" extends="presentation" visibility="private"/>
-    </configurations>
-    <publications>
-    </publications>
     <dependencies>
+        <dependency org="org.testng" name="testng" rev="5.14.6"/>
+        <dependency org="org.apache.ant" name="ant" rev="1.8.2"/>
     </dependencies>
 </ivy-module>
