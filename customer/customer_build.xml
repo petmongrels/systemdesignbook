@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="module_customer" default="compile.customer.test">
     <include file="../build/shared-build.xml"/>
-    <target name="compile.customer" depends="clean.customer">
+    <target name="compile.customer.source" depends="clean.customer">
         <compile-module-source module="customer"/>
     </target>
 
-    <target name="compile.customer.test" depends="compile.customer">
+    <target name="compile.customer" depends="compile.customer.source">
         <compile-module-test module="customer"/>
     </target>
 

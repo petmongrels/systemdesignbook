@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="system_design_book" default="build" xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="system_design_book" default="build">
     <include file="internal_build.xml"/>
-    <ivy:retrieve log="quiet" sync="true" pattern="../lib/[artifact]-[revision](-[classifier]).[ext]"/>
+    <include file="../application/application_build.xml" as="application"/>
+    <include file="../customer/customer_build.xml" as="customer"/>
+    <include file="../loan/loan_build.xml" as="loan"/>
+    <include file="../presentation/presentation_build.xml" as="presentation"/>
 
-    <target name="module.dependencies">
-        <module-dependency module="customer"/>
-        <module-dependency module="loan"/>
-        <module-dependency module="presentation" on="application"/>
-        <module-dependency module="application" on="customer, loan"/>
+    <target name="customer"/>
+    <target name="loan"/>
+    <target name="presentation" depends="application"/>
+    <target name="application" depends="customer, loan"/>
+    <target name="all" depends="customer, loan, application, presentation"/>
+
+    <target name="clean">
+        <call-for-module name="all"/>
     </target>
 
-    <target name="init" depends="module.dependencies"/>
+    <target name="compile">
+        <call-for-module name="all"/>
+    </target>
 
-    <target name="clean" depends="init"/>
-    <target name="compile" depends="init"/>
-    <target name="test" depends="init"/>
-    <target name="build" depends="init, clean, compile, test"/>
+    <target name="test">
+        <call-for-module name="all"/>
+    </target>
+
+    <target name="build" depends="clean, compile"/>
 </project>

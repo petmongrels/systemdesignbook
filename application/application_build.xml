@@ -6,7 +6,7 @@
         <compile-module-source module="application"/>
     </target>
 
-    <target name="compile.application.test" depends="compile.application.source">
+    <target name="compile.application" depends="compile.application.source">
         <compile-module-test module="application"/>
     </target>
 

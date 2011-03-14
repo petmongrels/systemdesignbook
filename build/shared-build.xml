@@ -37,7 +37,7 @@
         <sequential>
             <init-module module="@{module}"/>
             <mkdir dir="@{output.dir}/@{module}"/>
-            <javac destdir="@{output.dir}/@{module}" fork="true" includeantruntime="false">
+            <javac destdir="@{output.dir}/@{module}" fork="true" includeantruntime="false" debug="true">
                 <compilerarg line="${compiler.args.application}"/>
                 <classpath refid="production.classpath"/>
                 <src refid="@{code.path}"/>

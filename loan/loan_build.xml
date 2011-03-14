@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="loan" default="compile.loan.test">
+    <include file="../build/shared-build.xml"/>
+
+    <target name="compile.loan.source">
+        <compile-module-source module="loan"/>
+    </target>
+
+    <target name="compile.loan" depends="compile.loan.source">
+        <compile-module-test module="loan"/>
+    </target>
+
+    <target name="clean.loan">
+        <clean-module module="loan"/>
+    </target>
+</project>

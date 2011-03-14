@@ -1,32 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="internal">
-    <taskdef resource="net/sf/antcontrib/antcontrib.properties">
-        <classpath>
-            <pathelement location="lib/ant-contrib-1.0b3.jar"/>
-        </classpath>
-    </taskdef>
-    <taskdef name="module-dependency" classname="petmongrels.sdb.anttasks.ModuleDependencyTask"/>
-
-    <macrodef name="include-modules">
-        <sequential>
-            <foreach param="module" target="-include.module">
-                <path>
-                    <dirset dir="..">
-                        <include name="*"/>
-                        <exclude name=".*"/>
-                        <exclude name="build"/>
-                        <exclude name="out"/>
-                    </dirset>
-                </path>
-            </foreach>
-        </sequential>
-    </macrodef>
-
-    <target name="-include.modules">
-        <include-modules/>
-    </target>
-
-    <target name="-include.module">
-        <include file="${module}/${module}_build.xml"/>
-    </target>
+<project name="internal" xmlns:ivy="antlib:org.apache.ivy.ant">
+    <taskdef name="call-for-module" classname="petmongrels.sdb.anttasks.CallForModuleTask"/>
+    <ivy:retrieve log="quiet" sync="true" pattern="../lib/[artifact]-[revision](-[classifier]).[ext]"/>
 </project>

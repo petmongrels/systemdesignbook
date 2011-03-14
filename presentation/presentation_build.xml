@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="module-presentation" default="compile.presentation.test">
+<project name="module-presentation" default="compile.presentation">
     <include file="../build/shared-build.xml"/>
-    <target name="compile.presentation" depends="clean.presentation">
+    <target name="compile.presentation.source" depends="clean.presentation">
         <compile-module-source module="presentation"/>
     </target>
 
-    <target name="compile.presentation.test" depends="compile.presentation">
+    <target name="compile.presentation" depends="compile.presentation.source">
         <compile-module-test module="presentation"/>
     </target>
 
