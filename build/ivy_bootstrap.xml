@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="ivy_bootstrap" xmlns:ivy="antlib:org.apache.ivy.ant">
     <target name="init" unless="bypass.ivy">
-        <ivy:retrieve log="quiet" sync="true" pattern="../lib/[artifact]-[revision](-[classifier]).[ext]"/>
+        <ivy:retrieve log="quiet" sync="true" pattern="../lib/repository/[artifact]-[revision](-[classifier]).[ext]"/>
     </target>
 </project>

@@ -2,16 +2,21 @@
 <project name="system_design_book" default="build">
     <include file="ivy_bootstrap.xml" as="ivy"/>
     <include file="internal_build.xml"/>
+
     <include file="../application/application_build.xml" as="application"/>
     <include file="../customer/customer_build.xml" as="customer"/>
     <include file="../loan/loan_build.xml" as="loan"/>
     <include file="../presentation/presentation_build.xml" as="presentation"/>
+    <include file="../infrastructure/infrastructure_build.xml" as="infrastructure"/>
+    <include file="../product/product_build.xml" as="product"/>
 
     <target name="customer"/>
-    <target name="loan"/>
+    <target name="loan" depends="customer, product"/>
     <target name="presentation" depends="application"/>
     <target name="application" depends="customer, loan"/>
-    <target name="all" depends="customer, loan, application, presentation"/>
+    <target name="infrastructure"/>
+    <target name="product"/>
+    <target name="all" depends="product, infrastructure, customer, loan, application, presentation"/>
 
     <target name="clean" depends="ivy.init">
         <call-for-module name="all"/>

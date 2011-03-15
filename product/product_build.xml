@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="product" default="compile.product.test">
+    <include file="../build/shared-build.xml"/>
+
+    <target name="compile.product.source">
+        <compile-module-source module="product"/>
+    </target>
+
+    <target name="compile.product" depends="compile.product.source">
+        <compile-module-test module="product"/>
+    </target>
+
+    <target name="clean.product">
+        <clean-module module="product"/>
+    </target>
+</project>
