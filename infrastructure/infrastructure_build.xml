@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="infrastructure" default="compile.infrastructure.test">
-    <include file="../build/shared-build.xml"/>
+<project name="infrastructure" default="compile">
+    <include file="../build/shared_build.xml"/>
 
-    <target name="compile.infrastructure.source">
+    <target name="compile.source">
         <compile-module-source module="infrastructure"/>
     </target>
 
-    <target name="compile.infrastructure" depends="compile.infrastructure.source">
+    <target name="compile.test">
         <compile-module-test module="infrastructure"/>
     </target>
 
-    <target name="clean.infrastructure">
+    <target name="compile" depends="compile.source, compile.test"/>
+
+    <target name="clean">
         <clean-module module="infrastructure"/>
     </target>
 </project>

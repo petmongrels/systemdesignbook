@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="bootstrap" default="test">
-    <include file="shared-build.xml"/>
+    <include file="shared_build.xml"/>
     <include file="ivy_bootstrap.xml" as="ivy"/>
 
     <target name="compile" depends="ivy.init">

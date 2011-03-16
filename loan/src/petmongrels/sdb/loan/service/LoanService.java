@@ -1,5 +1,6 @@
-package petmongrels.sdb.application.request;
+package petmongrels.sdb.loan.service;
 
+import petmongrels.sdb.application.request.CreateLoanRequest;
 import petmongrels.sdb.product.service.ProductService;
 
 public class LoanService {
@@ -10,6 +11,6 @@ public class LoanService {
     }
 
     public void create(CreateLoanRequest request) {
-        productService.validateTerms(request.ProductId, );
+        productService.validateTerms(request.ProductId, request.loanTerms());
     }
 }

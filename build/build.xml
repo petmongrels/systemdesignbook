@@ -10,12 +10,12 @@
     <include file="../infrastructure/infrastructure_build.xml" as="infrastructure"/>
     <include file="../product/product_build.xml" as="product"/>
 
-    <target name="customer"/>
-    <target name="loan" depends="customer, product"/>
+    <target name="customer" depends="application"/>
+    <target name="loan" depends="customer, product, application"/>
     <target name="presentation" depends="application"/>
-    <target name="application" depends="customer, loan"/>
+    <target name="application"/>
     <target name="infrastructure"/>
-    <target name="product"/>
+    <target name="product" depends="application"/>
     <target name="all" depends="product, infrastructure, customer, loan, application, presentation"/>
 
     <target name="clean" depends="ivy.init">

@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="module-presentation" default="compile.presentation">
-    <include file="../build/shared-build.xml"/>
-    <target name="compile.presentation.source" depends="clean.presentation">
+<project name="presentation" default="compile.test">
+    <include file="../build/shared_build.xml"/>
+
+    <target name="compile.source">
         <compile-module-source module="presentation"/>
     </target>
 
-    <target name="compile.presentation" depends="compile.presentation.source">
+    <target name="compile.test">
         <compile-module-test module="presentation"/>
     </target>
 
-    <target name="clean.presentation">
+    <target name="compile" depends="compile.source, compile.test"/>
+
+    <target name="clean">
         <clean-module module="presentation"/>
     </target>
 </project>
