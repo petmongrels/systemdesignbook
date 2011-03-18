@@ -1,4 +1,4 @@
-package petmongrels.sdb.infrastructure.spring;
+package petmongrels.sdb.utility.spring;
 
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.context.ApplicationContext;

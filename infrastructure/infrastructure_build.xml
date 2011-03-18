@@ -2,17 +2,19 @@
 <project name="infrastructure" default="compile">
     <include file="../build/shared_build.xml"/>
 
+    <target name="clean">
+        <clean-module module="infrastructure"/>
+    </target>
+
+    <target name="compile" depends="compile.source, compile.test"/>
     <target name="compile.source">
         <compile-module-source module="infrastructure"/>
     </target>
-
     <target name="compile.test">
         <compile-module-test module="infrastructure"/>
     </target>
 
-    <target name="compile" depends="compile.source, compile.test"/>
-
-    <target name="clean">
-        <clean-module module="infrastructure"/>
+    <target name="test">
+        <test-module module="infrastructure"/>
     </target>
 </project>

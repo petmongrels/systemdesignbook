@@ -1,16 +1,20 @@
 package petmongrels.sdb.product.service;
 
 import petmongrels.sdb.application.request.LoanTerms;
-import petmongrels.sdb.product.repository.LoanProductRepository;
+import petmongrels.sdb.product.domain.LoanProduct;
+import petmongrels.sdb.product.repository.LoanProducts;
+
+import java.util.List;
 
 public class ProductService {
-    private LoanProductRepository loanProductRepository;
+    LoanProducts loanProducts;
 
-    public ProductService(LoanProductRepository loanProductRepository) {
-        this.loanProductRepository = loanProductRepository;
+    public ProductService(LoanProducts loanProducts) {
+        this.loanProducts = loanProducts;
     }
 
-    public void validateTerms(long productId, LoanTerms loanTerms) {
-        loanProductRepository.load(productId);
+    public List<String> verifyTerms(long productId, LoanTerms loanTerms) {
+        LoanProduct loanProduct = loanProducts.get(productId);
+        return loanProduct.verifyTerms(loanTerms);
     }
 }

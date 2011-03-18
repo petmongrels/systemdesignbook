@@ -8,6 +8,8 @@
     <property name="output.production.dir" value="../out/production"/>
     <property name="output.test.dir" value="../out/test"/>
 
+    <taskdef resource="testngtasks" classpath="../lib/local/testng/testng-6.0.jar"/>
+
     <path id="lib.classpath">
         <fileset dir="${env.JAVA_HOME}/jre/lib">
             <include name="**/*.jar"/>
@@ -41,7 +43,8 @@
         <sequential>
             <init-module module="@{module}"/>
             <mkdir dir="@{output.dir}/@{module}"/>
-            <javac destdir="@{output.dir}/@{module}" fork="true" includeantruntime="false" debug="true" bootclasspathref="lib.classpath" classpath="${dependent.source.classpath}">
+            <javac destdir="@{output.dir}/@{module}" fork="true" includeantruntime="false" debug="true" bootclasspathref="lib.classpath"
+                   classpath="${dependent.source.classpath}">
                 <compilerarg line="${compiler.args.application}"/>
                 <src path="@{code.path}"/>
             </javac>
@@ -70,6 +73,17 @@
         <sequential>
             <delete dir="${output.production.dir}/@{module}"/>
             <delete dir="${output.test.dir}/@{module}"/>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="test-module">
+        <attribute name="module"/>
+        <sequential>
+            <testng outputDir="../out/test/@{module}">
+                <classfileset dir="../out/test/@{module}" includes="**/*.class"/>
+                <classpath refid="lib.classpath"/>
+                <classpath path="${dependent.source.classpath};../out/production/@{module};../out/test/@{module}"/>
+            </testng>
         </sequential>
     </macrodef>
 </project>

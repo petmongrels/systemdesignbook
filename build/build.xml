@@ -3,20 +3,23 @@
     <include file="ivy_bootstrap.xml" as="ivy"/>
     <include file="internal_build.xml"/>
 
+    <!-- ant doesn't allow including files inside a target hence following cannot be automated -->
     <include file="../application/application_build.xml" as="application"/>
     <include file="../customer/customer_build.xml" as="customer"/>
     <include file="../loan/loan_build.xml" as="loan"/>
     <include file="../presentation/presentation_build.xml" as="presentation"/>
     <include file="../infrastructure/infrastructure_build.xml" as="infrastructure"/>
     <include file="../product/product_build.xml" as="product"/>
+    <include file="../utility/utility_build.xml" as="utility"/>
 
-    <target name="customer" depends="application"/>
-    <target name="loan" depends="customer, product, application"/>
+    <target name="customer" depends="application, utility"/>
+    <target name="loan" depends="customer, product, application, utility"/>
     <target name="presentation" depends="application"/>
     <target name="application"/>
     <target name="infrastructure"/>
-    <target name="product" depends="application"/>
-    <target name="all" depends="product, infrastructure, customer, loan, application, presentation"/>
+    <target name="product" depends="application, utility"/>
+    <target name="utility"/>
+    <target name="all" depends="product, infrastructure, customer, loan, application, presentation, utility"/>
 
     <target name="clean" depends="ivy.init">
         <call-for-module name="all"/>
@@ -30,5 +33,5 @@
         <call-for-module name="all"/>
     </target>
 
-    <target name="build" depends="clean, compile"/>
+    <target name="build" depends="clean, compile, test"/>
 </project>

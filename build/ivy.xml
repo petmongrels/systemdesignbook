@@ -2,7 +2,6 @@
 <ivy-module version="2.0">
     <info organisation="petmongrels" module="system_design_book"/>
     <dependencies>
-        <dependency org="org.testng" name="testng" rev="5.14.6"/>
         <dependency org="org.apache.ant" name="ant" rev="1.8.2"/>
         <dependency org="ant-contrib" name="ant-contrib" rev="1.0b3"/>
         <dependency org="org.springframework" name="spring" rev="2.5.6">

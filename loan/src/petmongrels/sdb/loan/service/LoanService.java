@@ -11,6 +11,7 @@ public class LoanService {
     }
 
     public void create(CreateLoanRequest request) {
-        productService.validateTerms(request.ProductId, request.loanTerms());
+        productService.verifyTerms(request.ProductId, request.loanTerms());
+
     }
 }

@@ -20,8 +20,9 @@ public class CallForModuleTask extends Task {
         Vector vector = getDependencies(module);
         for(Object dependency : vector) {
             Target owningTarget = getOwningTarget();
-            String targetToExecute = String.format("%s.%s", dependency, owningTarget.toString());
-            if(owningTarget.toString().equals("compile")) defineClasspathProperty(dependency.toString());
+            String owningTargetName = owningTarget.toString();
+            String targetToExecute = String.format("%s.%s", dependency, owningTargetName);
+            if(owningTargetName.equals("compile") || owningTargetName.equals("test")) defineClasspathProperty(dependency.toString());
             getProject().executeTarget(targetToExecute);
         }
     }

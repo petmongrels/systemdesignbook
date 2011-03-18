@@ -9,9 +9,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="JodaMoney" level="project" />
-    <orderEntry type="library" name="External" level="project" />
-    <orderEntry type="module" module-name="application" />
-    <orderEntry type="module" module-name="utility" />
     <orderEntry type="library" name="testng" level="project" />
   </component>
 </module>
