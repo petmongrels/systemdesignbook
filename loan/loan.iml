@@ -13,6 +13,8 @@
     <orderEntry type="module" module-name="product" />
     <orderEntry type="module" module-name="application" />
     <orderEntry type="library" name="testng" level="project" />
+    <orderEntry type="module" module-name="customer" />
+    <orderEntry type="module" module-name="utility" />
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">

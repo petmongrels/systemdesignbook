@@ -5,4 +5,5 @@ class ProductErrors {
     static final String LOAN_INTEREST_RATE_OUT_OF_RANGE = "LoanInterestRateOutOfRange";
     static final String NUMBER_OF_INSTALLMENTS_OUT_OF_RANGE = "NumberOfInstallmentsOutOfRange";
     static final String DISBURSAL_DATE_BEFORE_PRODUCT_BECOMES_ACTIVE = "NumberOfInstallmentsOutOfRange";
+    static final String FEES_NOT_SUPPORTED_BY_THIS_PRODUCT = "Fees_Not_Supported_By_This_Product";
 }

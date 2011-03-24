@@ -4,29 +4,32 @@ import org.joda.time.LocalDate;
 import petmongrels.sdb.application.request.LoanTerms;
 import petmongrels.sdb.product.domain.value.DoubleRange;
 import petmongrels.sdb.product.domain.value.MoneyRange;
+import petmongrels.sdb.utility.primitives.ValidationErrors;
 
-import java.util.ArrayList;
-import java.util.List;
+import static petmongrels.sdb.product.domain.ProductErrors.*;
 
 public class LoanProduct extends LoanProductData {
     MoneyRange loanAmountRange;
     DoubleRange interestRange;
     DoubleRange numberOfInstallmentsRange;
     LocalDate effectiveFrom;
+    LoanProductFees fees;
 
-    public LoanProduct(MoneyRange loanAmountRange, DoubleRange interestRange, DoubleRange numberOfInstallmentsRange, LocalDate effectiveFrom) {
+    public LoanProduct(MoneyRange loanAmountRange, DoubleRange interestRange, DoubleRange numberOfInstallmentsRange, LocalDate effectiveFrom, LoanProductFees fees) {
         this.loanAmountRange = loanAmountRange;
         this.interestRange = interestRange;
         this.numberOfInstallmentsRange = numberOfInstallmentsRange;
         this.effectiveFrom = effectiveFrom;
+        this.fees = fees;
     }
 
-    public List<String> verifyTerms(LoanTerms loanTerms) {
-        List<String> errors = new ArrayList<String>();
-        if(loanAmountRange.fallsOutside(loanTerms.LoanAmount)) errors.add(ProductErrors.LOAN_AMOUNT_OUT_OF_RANGE);
-        if(interestRange.fallsOutside(loanTerms.Interest)) errors.add(ProductErrors.LOAN_INTEREST_RATE_OUT_OF_RANGE);
-        if(numberOfInstallmentsRange.fallsOutside(loanTerms.NumberOfInstallments)) errors.add(ProductErrors.NUMBER_OF_INSTALLMENTS_OUT_OF_RANGE);
-        if(loanTerms.DisbursalDate.isBefore(effectiveFrom)) errors.add(ProductErrors.DISBURSAL_DATE_BEFORE_PRODUCT_BECOMES_ACTIVE);
+    public ValidationErrors verifyTerms(LoanTerms loanTerms) {
+        ValidationErrors errors = new ValidationErrors();
+        if(loanAmountRange.fallsOutside(loanTerms.LoanAmount)) errors.add(LOAN_AMOUNT_OUT_OF_RANGE);
+        if(interestRange.fallsOutside(loanTerms.Interest)) errors.add(LOAN_INTEREST_RATE_OUT_OF_RANGE);
+        if(numberOfInstallmentsRange.fallsOutside(loanTerms.NumberOfInstallments)) errors.add(NUMBER_OF_INSTALLMENTS_OUT_OF_RANGE);
+        if(loanTerms.DisbursalDate.isBefore(effectiveFrom)) errors.add(DISBURSAL_DATE_BEFORE_PRODUCT_BECOMES_ACTIVE);
+        if(!fees.supports(loanTerms.Fees)) errors.add(FEES_NOT_SUPPORTED_BY_THIS_PRODUCT);
         return errors;
     }
 }

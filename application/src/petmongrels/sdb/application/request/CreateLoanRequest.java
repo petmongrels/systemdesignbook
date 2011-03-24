@@ -2,9 +2,7 @@ package petmongrels.sdb.application.request;
 
 import org.joda.money.Money;
 import org.joda.time.LocalDate;
-
-import java.util.ArrayList;
-import java.util.List;
+import petmongrels.sdb.domain.Identifiable;
 
 public class CreateLoanRequest {
     public long CustomerId;
@@ -15,14 +13,23 @@ public class CreateLoanRequest {
     public LocalDate DisbursalDate;
     public long FundId;
     public String Purpose;
-    public List<Fee> LoanFees = new ArrayList<Fee>();
+    public RequestedLoanFees Fees = new RequestedLoanFees();
 
-    public class Fee {
+    public static class RequestedLoanFee implements Identifiable {
         public long FeeId;
         public Money Amount;
+
+        public RequestedLoanFee(long feeId, Money amount) {
+            FeeId = feeId;
+            Amount = amount;
+        }
+
+        public long getId() {
+            return FeeId;
+        }
     }
 
     public LoanTerms loanTerms() {
-        return new LoanTerms(LoanAmount, Interest, NumberOfInstallments, DisbursalDate);
+        return new LoanTerms(LoanAmount, Interest, NumberOfInstallments, DisbursalDate, Fees);
     }
 }

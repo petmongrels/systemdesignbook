@@ -21,5 +21,6 @@
             <exclude module="velocity"/>
         </dependency>
         <dependency org="joda-time" name="joda-time" rev="1.6.2"/>
+        <dependency org="com.google.guava" name="guava" rev="r08"/>
     </dependencies>
 </ivy-module>

@@ -12,6 +12,8 @@
     <orderEntry type="library" name="External" level="project" />
     <orderEntry type="library" name="JodaMoney" level="project" />
     <orderEntry type="library" name="testng" level="project" />
+    <orderEntry type="module" module-name="application" />
+    <orderEntry type="module" module-name="utility" />
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">

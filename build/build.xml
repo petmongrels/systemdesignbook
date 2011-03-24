@@ -3,7 +3,7 @@
     <include file="ivy_bootstrap.xml" as="ivy"/>
     <include file="internal_build.xml"/>
 
-    <!-- ant doesn't allow including files inside a target hence following cannot be automated -->
+    <!-- ant doesn't allow including files inside a target hence cannot do the following intelligently. Can do in NAnt -->
     <include file="../application/application_build.xml" as="application"/>
     <include file="../customer/customer_build.xml" as="customer"/>
     <include file="../loan/loan_build.xml" as="loan"/>
@@ -15,7 +15,7 @@
     <target name="customer" depends="application, utility"/>
     <target name="loan" depends="customer, product, application, utility"/>
     <target name="presentation" depends="application"/>
-    <target name="application"/>
+    <target name="application" depends="utility"/>
     <target name="infrastructure"/>
     <target name="product" depends="application, utility"/>
     <target name="utility"/>
