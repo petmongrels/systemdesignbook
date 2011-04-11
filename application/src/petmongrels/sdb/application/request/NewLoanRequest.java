@@ -4,7 +4,7 @@ import org.joda.money.Money;
 import org.joda.time.LocalDate;
 import petmongrels.sdb.domain.Identifiable;
 
-public class CreateLoanRequest {
+public class NewLoanRequest {
     public long CustomerId;
     public long ProductId;
     public Money LoanAmount;

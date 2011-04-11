@@ -2,8 +2,8 @@ package petmongrels.sdb.product.utility;
 
 import org.joda.money.Money;
 import org.joda.time.LocalDate;
+import petmongrels.sdb.application.request.NewLoanRequest;
 import petmongrels.sdb.application.request.RequestedLoanFees;
-import petmongrels.sdb.application.request.CreateLoanRequest;
 import petmongrels.sdb.product.domain.LoanProductFee;
 import petmongrels.sdb.product.domain.LoanProductFees;
 import petmongrels.sdb.product.domain.value.DoubleRange;
@@ -29,7 +29,7 @@ public class ProductValueObjectFactory {
         return LocalMoney.of(amount);
     }
 
-    protected RequestedLoanFees fees(CreateLoanRequest.RequestedLoanFee... fees) {
+    protected RequestedLoanFees fees(NewLoanRequest.RequestedLoanFee... fees) {
         RequestedLoanFees requestedLoanFees = new RequestedLoanFees();
         requestedLoanFees.addAll(Arrays.asList(fees));
         return requestedLoanFees;
@@ -47,8 +47,8 @@ public class ProductValueObjectFactory {
         return moneyRange(minimum, maximum);
     }
 
-    protected CreateLoanRequest.RequestedLoanFee fee(long feeId, Money amount) {
-        return new CreateLoanRequest.RequestedLoanFee(feeId, amount);
+    protected NewLoanRequest.RequestedLoanFee fee(long feeId, Money amount) {
+        return new NewLoanRequest.RequestedLoanFee(feeId, amount);
     }
 
     protected int numberOfInstallments(int count) {

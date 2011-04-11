@@ -5,10 +5,12 @@ import org.apache.tools.ant.Project;
 import org.apache.tools.ant.Target;
 import org.apache.tools.ant.Task;
 
+import java.util.Arrays;
 import java.util.Vector;
 
 public class CallForModuleTask extends Task {
     String module;
+    String[] ignoredTargets = new String[]{"domain.modules"};
 
     public void setName(String module) {
         this.module = module;
@@ -19,6 +21,8 @@ public class CallForModuleTask extends Task {
         super.execute();
         Vector vector = getDependencies(module);
         for(Object dependency : vector) {
+            if (Arrays.asList(ignoredTargets).contains(dependency.toString())) continue;
+
             Target owningTarget = getOwningTarget();
             String owningTargetName = owningTarget.toString();
             String targetToExecute = String.format("%s.%s", dependency, owningTargetName);

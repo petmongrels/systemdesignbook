@@ -8,6 +8,10 @@ import petmongrels.sdb.utility.primitives.ValidationErrors;
 public class CustomerService {
     private Customers customers;
 
+    public CustomerService() {
+        this(new Customers());
+    }
+
     public CustomerService(Customers customers) {
         this.customers = customers;
     }

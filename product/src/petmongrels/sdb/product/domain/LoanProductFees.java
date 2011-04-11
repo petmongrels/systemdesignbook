@@ -5,7 +5,7 @@ import petmongrels.sdb.domain.Identities;
 
 import java.util.ArrayList;
 
-import static petmongrels.sdb.application.request.CreateLoanRequest.RequestedLoanFee;
+import static petmongrels.sdb.application.request.NewLoanRequest.RequestedLoanFee;
 
 public class LoanProductFees extends ArrayList<LoanProductFee> {
     public boolean supports(RequestedLoanFees fees) {

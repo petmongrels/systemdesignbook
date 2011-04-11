@@ -3,8 +3,11 @@
     <info organisation="petmongrels" module="system_design_book"/>
     <dependencies>
         <dependency org="org.apache.ant" name="ant" rev="1.8.2"/>
-        <dependency org="ant-contrib" name="ant-contrib" rev="1.0b3"/>
+        <dependency org="ant-contrib" name="ant-contrib" rev="1.0b3">
+            <exclude module="ant"/>
+        </dependency>
         <dependency org="org.springframework" name="spring" rev="2.5.6">
+            <exclude module="ant"/>
             <exclude module="jxl"/>
             <exclude module="oc4j"/>
             <exclude module="jsf-api"/>
@@ -20,7 +23,11 @@
             <exclude module="commons-attributes-compiler"/>
             <exclude module="velocity"/>
         </dependency>
-        <dependency org="joda-time" name="joda-time" rev="1.6.2"/>
-        <dependency org="com.google.guava" name="guava" rev="r08"/>
+        <dependency org="joda-time" name="joda-time" rev="1.6.2">
+            <exclude module="ant"/>
+        </dependency>
+        <dependency org="com.google.guava" name="guava" rev="r08">
+            <exclude module="ant"/>
+        </dependency>
     </dependencies>
 </ivy-module>

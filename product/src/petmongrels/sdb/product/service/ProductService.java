@@ -8,6 +8,10 @@ import petmongrels.sdb.utility.primitives.ValidationErrors;
 public class ProductService {
     LoanProducts loanProducts;
 
+    public ProductService() {
+        this(new LoanProducts());
+    }
+
     public ProductService(LoanProducts loanProducts) {
         this.loanProducts = loanProducts;
     }

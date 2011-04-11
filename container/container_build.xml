@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="container" default="compile">
+    <include file="../build/shared_build.xml"/>
+
+    <target name="clean">
+        <clean-module module="container"/>
+    </target>
+
+    <target name="compile" depends="compile.source, compile.test"/>
+    <target name="compile.source">
+        <compile-module-source module="container"/>
+    </target>
+    <target name="compile.test">
+        <compile-module-test module="container"/>
+    </target>
+
+    <target name="test">
+        <test-module module="container"/>
+    </target>
+</project>

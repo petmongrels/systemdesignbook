@@ -17,4 +17,12 @@ public class ValidationErrors {
     public long size() {
         return data.size();
     }
+
+    public void append(ValidationErrors validationErrors) {
+        data.addAll(validationErrors.data);
+    }
+
+    public boolean exist() {
+        return size() > 0;
+    }
 }
