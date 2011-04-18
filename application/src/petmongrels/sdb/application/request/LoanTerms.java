@@ -2,7 +2,7 @@ package petmongrels.sdb.application.request;
 
 import org.joda.money.Money;
 import org.joda.time.LocalDate;
-import petmongrels.sdb.utility.domain.scalars.MeetingFrequency;
+import petmongrels.sdb.domain.scalars.MeetingFrequency;
 
 public class LoanTerms {
     public Money LoanAmount;

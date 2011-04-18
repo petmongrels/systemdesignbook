@@ -3,7 +3,7 @@ package petmongrels.sdb.product.service;
 import petmongrels.sdb.application.request.LoanTerms;
 import petmongrels.sdb.product.domain.LoanProduct;
 import petmongrels.sdb.product.repository.LoanProducts;
-import petmongrels.sdb.utility.primitives.ValidationErrors;
+import petmongrels.sdb.validation.ValidationErrors;
 
 public class ProductService {
     LoanProducts loanProducts;

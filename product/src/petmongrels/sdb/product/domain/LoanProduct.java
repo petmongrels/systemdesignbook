@@ -4,7 +4,7 @@ import org.joda.time.LocalDate;
 import petmongrels.sdb.application.request.LoanTerms;
 import petmongrels.sdb.product.domain.value.DoubleRange;
 import petmongrels.sdb.product.domain.value.MoneyRange;
-import petmongrels.sdb.utility.primitives.ValidationErrors;
+import petmongrels.sdb.validation.ValidationErrors;
 
 import static petmongrels.sdb.product.domain.ProductErrors.*;
 

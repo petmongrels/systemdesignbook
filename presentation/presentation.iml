@@ -12,6 +12,10 @@
     <orderEntry type="library" name="JodaMoney" level="project" />
     <orderEntry type="library" name="testng" level="project" />
     <orderEntry type="module" module-name="loan" />
+    <orderEntry type="module" module-name="application" />
+    <orderEntry type="module" module-name="utility" />
+    <orderEntry type="module" module-name="product" />
+    <orderEntry type="module" module-name="customer" />
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">

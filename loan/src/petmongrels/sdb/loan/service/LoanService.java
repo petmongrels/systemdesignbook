@@ -9,7 +9,7 @@ import petmongrels.sdb.loan.domain.LoanFactory;
 import petmongrels.sdb.loan.repository.Loans;
 import petmongrels.sdb.loan.responsefactory.NewLoanResponseFactory;
 import petmongrels.sdb.product.service.ProductService;
-import petmongrels.sdb.utility.primitives.ValidationErrors;
+import petmongrels.sdb.validation.ValidationErrors;
 
 public class LoanService {
     ProductService productService;

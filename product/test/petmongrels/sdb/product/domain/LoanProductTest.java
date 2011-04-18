@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import petmongrels.sdb.application.request.LoanTerms;
 import petmongrels.sdb.product.utility.ProductValueObjectFactory;
-import petmongrels.sdb.utility.primitives.ValidationErrors;
+import petmongrels.sdb.validation.ValidationErrors;
 
 @Test
 public class LoanProductTest extends ProductValueObjectFactory {

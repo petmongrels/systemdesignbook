@@ -3,7 +3,7 @@ package petmongrels.sdb.customer.service;
 import petmongrels.sdb.application.request.LoanTerms;
 import petmongrels.sdb.customer.domain.Customer;
 import petmongrels.sdb.customer.repository.Customers;
-import petmongrels.sdb.utility.primitives.ValidationErrors;
+import petmongrels.sdb.validation.ValidationErrors;
 
 public class CustomerService {
     private Customers customers;

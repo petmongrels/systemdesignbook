@@ -1,16 +1,15 @@
 package petmongrels.sdb.application.request;
 
-import petmongrels.sdb.utility.primitives.ValidationErrors;
+import petmongrels.sdb.validation.ValidationErrors;
 
-public class NewLoanResponse {
-    public String loanNumber;
-    ValidationErrors errors;
+public class NewLoanResponse extends ServiceResponse {
+    public String LoanNumber;
 
     public NewLoanResponse(ValidationErrors errors) {
-        this.errors = errors;
+        super(errors);
     }
 
     public NewLoanResponse(String loanNumber) {
-        this.loanNumber = loanNumber;
+        this.LoanNumber = loanNumber;
     }
 }

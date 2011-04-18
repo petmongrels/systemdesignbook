@@ -2,7 +2,7 @@ package petmongrels.sdb.loan.responsefactory;
 
 import petmongrels.sdb.application.request.NewLoanResponse;
 import petmongrels.sdb.loan.domain.Loan;
-import petmongrels.sdb.utility.primitives.ValidationErrors;
+import petmongrels.sdb.validation.ValidationErrors;
 
 public class NewLoanResponseFactory {
     public static NewLoanResponse create(ValidationErrors errors) {

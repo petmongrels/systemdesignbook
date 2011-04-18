@@ -1,7 +1,7 @@
 package petmongrels.sdb.customer.domain;
 
-import petmongrels.sdb.utility.domain.scalars.MeetingFrequency;
-import petmongrels.sdb.utility.primitives.ValidationErrors;
+import petmongrels.sdb.domain.scalars.MeetingFrequency;
+import petmongrels.sdb.validation.ValidationErrors;
 
 public class Customer {
     boolean isActive;
