@@ -4,9 +4,9 @@ import petmongrels.sdb.application.request.LoanTerms;
 import petmongrels.sdb.application.request.NewLoanRequest;
 import petmongrels.sdb.application.request.NewLoanResponse;
 import petmongrels.sdb.customer.service.CustomerService;
-import petmongrels.sdb.loan.domain.Loan;
-import petmongrels.sdb.loan.domain.LoanFactory;
-import petmongrels.sdb.loan.repository.Loans;
+import petmongrels.sdb.loan.domain.LoanAccount;
+import petmongrels.sdb.loan.domain.LoanAccountFactory;
+import petmongrels.sdb.loan.repository.AllLoans;
 import petmongrels.sdb.loan.responsefactory.NewLoanResponseFactory;
 import petmongrels.sdb.product.service.ProductService;
 import petmongrels.sdb.validation.ValidationErrors;
@@ -14,17 +14,17 @@ import petmongrels.sdb.validation.ValidationErrors;
 public class LoanService {
     ProductService productService;
     CustomerService customerService;
-    Loans loans;
+    AllLoans allLoans;
     LoanEventsListeners listeners = new LoanEventsListeners();
 
     public LoanService() {
-        this(new ProductService(), new CustomerService(), new Loans());
+        this(new ProductService(), new CustomerService(), new AllLoans());
     }
 
-    public LoanService(ProductService productService, CustomerService customerService, Loans loans) {
+    public LoanService(ProductService productService, CustomerService customerService, AllLoans allLoans) {
         this.productService = productService;
         this.customerService = customerService;
-        this.loans = loans;
+        this.allLoans = allLoans;
     }
 
     public void addListener(LoanEventsListener listener) {
@@ -36,9 +36,9 @@ public class LoanService {
         ValidationErrors errors = productService.verifyTerms(request.ProductId, loanTerms);
         errors.append(customerService.verifyNewLoanTerms(request.CustomerId, loanTerms));
         if (errors.exist()) return NewLoanResponseFactory.create(errors);
-        Loan loan = new LoanFactory().newLoan(request);
-        loans.add(loan);
-        listeners.loanCreated(loan.getId());
-        return NewLoanResponseFactory.create(loan);
+        LoanAccount loanAccount = new LoanAccountFactory().newAccount(request);
+        allLoans.add(loanAccount);
+        listeners.loanCreated(loanAccount.id());
+        return NewLoanResponseFactory.create(loanAccount);
     }
 }

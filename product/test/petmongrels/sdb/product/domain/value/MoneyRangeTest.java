@@ -2,7 +2,8 @@ package petmongrels.sdb.product.domain.value;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import petmongrels.sdb.utility.primitives.LocalMoney;
+import petmongrels.sdb.primitives.LocalMoney;
+import petmongrels.sdb.primitives.MoneyRange;
 
 @Test
 public class MoneyRangeTest {

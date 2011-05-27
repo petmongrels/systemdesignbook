@@ -13,17 +13,21 @@
     <include file="../utility/utility_build.xml" as="utility"/>
     <include file="../container/container_build.xml" as="container"/>
 
-    <target name="customer" depends="application, utility, infrastructure"/>
-    <target name="loan" depends="customer, product, application, utility, infrastructure"/>
-    <target name="presentation" depends="application, container"/>
-    <target name="application" depends="utility"/>
-    <target name="infrastructure"/>
-    <target name="container" depends="domain.modules"/>
-    <target name="product" depends="application, utility, infrastructure"/>
     <target name="utility"/>
-    <target name="all" depends="domain.modules, infrastructure, application, presentation, utility, container"/>
+    <target name="infrastructure"/>
+    <target name="application" depends="utility"/>
+    <target name="-domain.module.pre-requisites" depends="utility, infrastructure, application"/>
 
-    <target name="domain.modules" depends="product, loan, customer"/>
+    <target name="customer" depends="-domain.module.pre-requisites"/>
+    <target name="loan" depends="customer, product, -domain.module.pre-requisites"/>
+    <target name="product" depends="-domain.module.pre-requisites"/>
+    <target name="-domain.modules" depends="product, loan, customer"/>
+
+    <target name="presentation" depends="application, container"/>
+    <target name="container" depends="-domain.modules"/>
+
+    <target name="all" depends="-domain.modules, infrastructure, application, presentation, utility, container"/>
+
 
     <target name="clean" depends="ivy.init">
         <call-for-module name="all"/>

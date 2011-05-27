@@ -9,7 +9,7 @@ public class Identities<E> {
     public Identities(List<E> identifiables) {
         data = new ArrayList<Long>();
         for(E e : identifiables)
-            data.add(((Identifiable) e).getId());
+            data.add(((Identifiable) e).id());
     }
 
     public boolean contains(Identities<E> identities) {

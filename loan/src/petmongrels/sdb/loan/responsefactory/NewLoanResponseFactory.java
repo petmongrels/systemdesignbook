@@ -1,7 +1,7 @@
 package petmongrels.sdb.loan.responsefactory;
 
 import petmongrels.sdb.application.request.NewLoanResponse;
-import petmongrels.sdb.loan.domain.Loan;
+import petmongrels.sdb.loan.domain.LoanAccount;
 import petmongrels.sdb.validation.ValidationErrors;
 
 public class NewLoanResponseFactory {
@@ -9,7 +9,7 @@ public class NewLoanResponseFactory {
         return new NewLoanResponse(errors);
     }
 
-    public static NewLoanResponse create(Loan loan) {
-        return new NewLoanResponse(loan.getNumber());
+    public static NewLoanResponse create(LoanAccount loanAccount) {
+        return new NewLoanResponse(loanAccount.number());
     }
 }

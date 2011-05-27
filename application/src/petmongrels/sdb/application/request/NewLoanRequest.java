@@ -24,7 +24,7 @@ public class NewLoanRequest {
             Amount = amount;
         }
 
-        public long getId() {
+        public long id() {
             return FeeId;
         }
     }

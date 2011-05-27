@@ -2,6 +2,7 @@ package petmongrels.sdb.product.domain.value;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import petmongrels.sdb.primitives.DoubleRange;
 
 @Test
 public class DoubleRangeTest {

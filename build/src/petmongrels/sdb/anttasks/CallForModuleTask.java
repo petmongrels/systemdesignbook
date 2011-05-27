@@ -2,50 +2,46 @@ package petmongrels.sdb.anttasks;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Project;
-import org.apache.tools.ant.Target;
 import org.apache.tools.ant.Task;
+import petmongrels.sdb.anttasks.domain.BuildTarget;
+import petmongrels.sdb.anttasks.domain.Classpath;
+import petmongrels.sdb.anttasks.domain.Dependencies;
+import petmongrels.sdb.anttasks.domain.Module;
 
-import java.util.Arrays;
+import java.util.Dictionary;
+import java.util.Enumeration;
 import java.util.Vector;
 
-public class CallForModuleTask extends Task {
-    String module;
-    String[] ignoredTargets = new String[]{"domain.modules"};
+public class CallForModuleTask extends Task implements Dependencies {
+    Module module;
 
-    public void setName(String module) {
-        this.module = module;
+    public void setName(String name) {
+        this.module = new Module(name, this);
     }
 
     @Override
     public void execute() throws BuildException {
         super.execute();
-        Vector vector = getDependencies(module);
-        for(Object dependency : vector) {
-            if (Arrays.asList(ignoredTargets).contains(dependency.toString())) continue;
 
-            Target owningTarget = getOwningTarget();
-            String owningTargetName = owningTarget.toString();
-            String targetToExecute = String.format("%s.%s", dependency, owningTargetName);
-            if(owningTargetName.equals("compile") || owningTargetName.equals("test")) defineClasspathProperty(dependency.toString());
-            getProject().executeTarget(targetToExecute);
+        BuildTarget owningBuildTarget = new BuildTarget(getOwningTarget().toString());
+        for (Module dependentModule : module.dependencies()) {
+            Dictionary<String, Classpath> classpaths = dependentModule.getClassPathsFor(owningBuildTarget);
+            setClasspathProperty(classpaths);
+            getProject().executeTarget(owningBuildTarget.targetFor(dependentModule));
         }
     }
 
-    private void defineClasspathProperty(String moduleName) {
-        Vector dependencies = getDependencies(moduleName);
-        StringBuilder builder = new StringBuilder();
-        for(Object dependency : dependencies) {
-            builder.append("../out/production/").append(dependency).append(";");
-        }
-        builder.append("../out/production/").append(moduleName);
-        if(builder.length() != 0) {
-            getProject().log("", Project.MSG_INFO);
-            getProject().log("[call-for-module] dependent.source.classpath = " + builder.toString(), Project.MSG_INFO);
-            getProject().setProperty("dependent.source.classpath", builder.toString());
+    private void setClasspathProperty(Dictionary<String, Classpath> classpaths) {
+        Enumeration<String> keys = classpaths.keys();
+        while (keys.hasMoreElements()) {
+            String key = keys.nextElement();
+            String propertyName = String.format("dependent.%s.classpath", key);
+            getProject().log(String.format("[call-for-module] %s = %s", propertyName, classpaths.get(key)), Project.MSG_DEBUG);
+            getProject().setProperty(propertyName, classpaths.get(key).toString());
         }
     }
 
-    private Vector getDependencies(String name) {
+    public Vector of(String name) {
         Project project = getProject();
         Vector vector = project.topoSort(name, project.getTargets(), false);
         vector.removeElementAt(vector.size() - 1);

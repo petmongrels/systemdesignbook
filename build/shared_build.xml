@@ -7,8 +7,10 @@
     <property name="compiler.args.application" value=""/>
     <property name="output.production.dir" value="../out/production"/>
     <property name="output.test.dir" value="../out/test"/>
+    <property name="output.succor.dir" value="../out/succor"/>
 
     <taskdef resource="testngtasks" classpath="../lib/local/testng/testng-6.0.jar"/>
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
 
     <path id="lib.classpath">
         <fileset dir="${env.JAVA_HOME}/jre/lib">
@@ -40,31 +42,39 @@
         <attribute name="module"/>
         <attribute name="code.path"/>
         <attribute name="output.dir"/>
+        <attribute name="classpath"/>
         <sequential>
-            <init-module module="@{module}"/>
-            <mkdir dir="@{output.dir}/@{module}"/>
-            <javac destdir="@{output.dir}/@{module}" fork="true" includeantruntime="false" debug="true" bootclasspathref="lib.classpath"
-                   classpath="${dependent.source.classpath}">
-                <compilerarg line="${compiler.args.application}"/>
-                <src path="@{code.path}"/>
-            </javac>
+            <if>
+                <available file="@{code.path}"/>
+                <then>
+                    <echo message="@{classpath}" level="debug"/>
+                    <init-module module="@{module}"/>
+                    <mkdir dir="@{output.dir}/@{module}"/>
+                    <javac destdir="@{output.dir}/@{module}" fork="true" includeantruntime="false" debug="true" bootclasspathref="lib.classpath"
+                           classpath="@{classpath}">
+                        <compilerarg line="${compiler.args.application}"/>
+                        <src path="@{code.path}"/>
+                    </javac>
+                </then>
+            </if>
         </sequential>
     </macrodef>
 
     <macrodef name="compile-module-source">
         <attribute name="module"/>
         <sequential>
-            <compile module="@{module}" output.dir="${output.production.dir}" code.path="../@{module}/src"/>
+            <compile module="@{module}" output.dir="${output.production.dir}" code.path="../@{module}/src" classpath="${dependent.source.classpath}"/>
             <copy todir="${output.production.dir}/@{module}">
                 <fileset dir="resources" erroronmissingdir="false"/>
             </copy>
+            <compile module="@{module}" output.dir="${output.succor.dir}" code.path="../@{module}/succor" classpath="${dependent.succor.classpath}"/>
         </sequential>
     </macrodef>
 
     <macrodef name="compile-module-test">
         <attribute name="module"/>
         <sequential>
-            <compile module="@{module}" output.dir="${output.test.dir}" code.path="../@{module}/test"/>
+            <compile module="@{module}" output.dir="${output.test.dir}" code.path="../@{module}/test" classpath="${dependent.test.classpath}"/>
         </sequential>
     </macrodef>
 
@@ -73,17 +83,23 @@
         <sequential>
             <delete dir="${output.production.dir}/@{module}"/>
             <delete dir="${output.test.dir}/@{module}"/>
+            <delete dir="${output.succor.dir}/@{module}"/>
         </sequential>
     </macrodef>
 
     <macrodef name="test-module">
         <attribute name="module"/>
         <sequential>
-            <testng outputDir="../out/test/@{module}">
-                <classfileset dir="../out/test/@{module}" includes="**/*.class"/>
-                <classpath refid="lib.classpath"/>
-                <classpath path="${dependent.source.classpath};../out/production/@{module};../out/test/@{module}"/>
-            </testng>
+            <if>
+                <available file="../out/test/@{module}"/>
+                <then>
+                    <testng outputDir="../out/test/@{module}">
+                        <classfileset dir="../out/test/@{module}" includes="**/*.class"/>
+                        <classpath refid="lib.classpath"/>
+                        <classpath path="${dependent.source.classpath};../out/production/@{module};../out/test/@{module}"/>
+                    </testng>
+                </then>
+            </if>
         </sequential>
     </macrodef>
 </project>

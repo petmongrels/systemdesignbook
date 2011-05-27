@@ -2,22 +2,22 @@ package petmongrels.sdb.customer.service;
 
 import petmongrels.sdb.application.request.LoanTerms;
 import petmongrels.sdb.customer.domain.Customer;
-import petmongrels.sdb.customer.repository.Customers;
+import petmongrels.sdb.customer.repository.AllCustomers;
 import petmongrels.sdb.validation.ValidationErrors;
 
 public class CustomerService {
-    private Customers customers;
+    private AllCustomers allCustomers;
 
     public CustomerService() {
-        this(new Customers());
+        this(new AllCustomers());
     }
 
-    public CustomerService(Customers customers) {
-        this.customers = customers;
+    public CustomerService(AllCustomers allCustomers) {
+        this.allCustomers = allCustomers;
     }
 
     public ValidationErrors verifyNewLoanTerms(long customerId, LoanTerms loanTerms) {
-        Customer customer = customers.get(customerId);
+        Customer customer = allCustomers.get(customerId);
         return customer.available(loanTerms.MeetingFrequency);
     }
 }
