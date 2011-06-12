@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="utility" default="compile">
+    <include file="../build/shared_build.xml"/>
+
+    <target name="clean">
+        <clean-module module="utility"/>
+    </target>
+
+    <target name="compile" depends="compile.source, compile.test"/>
+    <target name="compile.source">
+        <compile-module-source module="utility"/>
+    </target>
+    <target name="compile.test">
+        <compile-module-test module="utility"/>
+    </target>
+
+    <target name="test">
+        <test-module module="utility"/>
+    </target>
+</project>
