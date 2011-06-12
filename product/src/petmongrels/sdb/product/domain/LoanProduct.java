@@ -8,7 +8,7 @@ import petmongrels.sdb.validation.ValidationErrors;
 
 import static petmongrels.sdb.product.domain.ProductErrors.*;
 
-public class LoanProduct extends LoanProductData {
+public class LoanProduct extends ExtrinsicLoanProduct {
     MoneyRange loanAmountRange;
     DoubleRange interestRange;
     DoubleRange numberOfInstallmentsRange;

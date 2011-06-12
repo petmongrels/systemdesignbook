@@ -1,6 +1,6 @@
 package petmongrels.sdb.presentation.loan.response;
 
-import petmongrels.sdb.application.request.NewLoanResponse;
+import petmongrels.sdb.application.response.NewLoanResponse;
 import petmongrels.sdb.presentation.loan.request.NewLoanSummaryUserRequest;
 import petmongrels.sdb.presentation.loan.validation.LoanFlowErrors;
 

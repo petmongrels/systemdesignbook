@@ -1,9 +1,8 @@
 package petmongrels.sdb.presentation;
 
 import petmongrels.sdb.application.request.NewLoanRequest;
-import petmongrels.sdb.application.request.NewLoanResponse;
+import petmongrels.sdb.application.response.NewLoanResponse;
 import petmongrels.sdb.loan.service.LoanService;
-import petmongrels.sdb.presentation.loan.factory.LoanUser;
 import petmongrels.sdb.presentation.loan.request.NewLoanSummaryUserRequest;
 import petmongrels.sdb.presentation.loan.request.NewLoanUserRequest;
 import petmongrels.sdb.presentation.loan.response.NewLoanSummaryUserResponse;

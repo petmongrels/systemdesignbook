@@ -14,6 +14,11 @@ public class ExtrinsicLoan extends Entity {
         return loanNumber;
     }
 
+    public ExtrinsicLoan number(String loanNumber) {
+        this.loanNumber = loanNumber;
+        return this;
+    }
+
     public long productId() {
         return productId;
     }

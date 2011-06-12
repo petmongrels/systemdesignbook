@@ -1,4 +1,4 @@
-package petmongrels.sdb.application.request;
+package petmongrels.sdb.application.response;
 
 import petmongrels.sdb.validation.ValidationErrors;
 

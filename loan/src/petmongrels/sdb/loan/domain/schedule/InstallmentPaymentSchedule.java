@@ -17,4 +17,16 @@ public class InstallmentPaymentSchedule {
         }
         return schedule;
     }
+
+    public Money paymentMade() {
+        return null;
+    }
+
+    public Money paymentRemaining() {
+        return null;
+    }
+
+    public LocalDate scheduledEndDate() {
+        return null;
+    }
 }

@@ -2,6 +2,7 @@ package petmongrels.sdb.loan.domain;
 
 import org.joda.money.Money;
 import org.joda.time.LocalDate;
+import petmongrels.sdb.loan.domain.fees.LoanFees;
 import petmongrels.sdb.loan.domain.schedule.InstallmentPaymentSchedule;
 
 public class LoanAccount extends ExtrinsicLoan {
@@ -11,6 +12,7 @@ public class LoanAccount extends ExtrinsicLoan {
     LoanFees fees;
     InstallmentPaymentSchedule schedule;
     LocalDate disbursementDate;
+    LoanAccountStatus status;
 
     private LoanAccount() {
     }
@@ -24,8 +26,33 @@ public class LoanAccount extends ExtrinsicLoan {
         return loanAccount;
     }
 
-    public void disburse(LocalDate date) {
-        this.disbursementDate = date;
-        schedule = InstallmentPaymentSchedule.forNewLoan(amount, interestRate, numberOfInstallments, date);
+    public LoanAccount cancel() {
+        if (status == LoanAccountStatus.DISBURSED)
+            throw new InvalidLoanStateException(String.format("This loan was disbursed on %s, hence cannot be cancelled", disbursementDate));
+        status = LoanAccountStatus.CANCELLED;
+        return this;
+    }
+
+    public LoanAccount disburse() {
+        this.disbursementDate = new LocalDate();
+        schedule = InstallmentPaymentSchedule.forNewLoan(amount, interestRate, numberOfInstallments, disbursementDate);
+        status = LoanAccountStatus.DISBURSED;
+        return this;
+    }
+
+    public LoanAccount pay(LocalDate date, Money amount) {
+        return this;
+    }
+
+    public LoanAccount installmentMissed() {
+        return this;
+    }
+
+    public LoanAccountStatus status() {
+        return status;
+    }
+
+    public LoanSummary summary() {
+        return new LoanSummary(amount, schedule.paymentMade(), interestRate, schedule.paymentRemaining(), schedule.scheduledEndDate());
     }
 }

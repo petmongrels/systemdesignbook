@@ -1,8 +1,10 @@
 package petmongrels.sdb.loan.service;
 
+import petmongrels.sdb.application.request.DisburseLoanRequest;
 import petmongrels.sdb.application.request.LoanTerms;
 import petmongrels.sdb.application.request.NewLoanRequest;
-import petmongrels.sdb.application.request.NewLoanResponse;
+import petmongrels.sdb.application.response.DisburseLoanResponse;
+import petmongrels.sdb.application.response.NewLoanResponse;
 import petmongrels.sdb.customer.service.CustomerService;
 import petmongrels.sdb.loan.domain.LoanAccount;
 import petmongrels.sdb.loan.domain.LoanAccountFactory;

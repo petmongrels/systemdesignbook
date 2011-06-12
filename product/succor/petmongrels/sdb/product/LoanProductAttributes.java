@@ -3,7 +3,6 @@ package petmongrels.sdb.product;
 import org.joda.money.Money;
 import org.joda.time.LocalDate;
 import petmongrels.sdb.application.request.NewLoanRequest;
-import petmongrels.sdb.application.request.RequestedLoanFees;
 import petmongrels.sdb.primitives.DoubleRange;
 import petmongrels.sdb.primitives.LocalMoney;
 import petmongrels.sdb.primitives.MoneyRange;
@@ -12,13 +11,7 @@ import petmongrels.sdb.product.domain.LoanProductFees;
 
 import java.util.Arrays;
 
-public class ProductAttributes {
-    public static RequestedLoanFees fees(NewLoanRequest.RequestedLoanFee... fees) {
-        RequestedLoanFees requestedLoanFees = new RequestedLoanFees();
-        requestedLoanFees.addAll(Arrays.asList(fees));
-        return requestedLoanFees;
-    }
-
+public class LoanProductAttributes {
     public static DoubleRange numberOfInstallmentsRange(int minimum, int maximum) {
         return new DoubleRange(minimum, maximum);
     }
@@ -39,7 +32,11 @@ public class ProductAttributes {
         return count;
     }
 
-    public static int interest(int rate) {
+    public static double interest(int rate) {
+        return rate;
+    }
+
+    public static double interest(double rate) {
         return rate;
     }
 
